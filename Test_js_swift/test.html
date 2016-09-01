@@ -1,0 +1,56 @@
+<html>
+    <head>
+             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+             <title>首页</title>
+         </head>
+    
+     <script type="text/javascript">
+        
+       function JS_Swift1(){
+                 test1();
+       }
+       function JS_Swift2(){
+             test2('oc','swift');
+       }
+    
+       function Swift_JS1(){
+              alert("Swift调用了无参数的js方法");
+       }
+       function Swift_JS2(name1,name2){
+              alert("Swift调用了有参数的js方法,参数分别为" + name1 + "," + name2);
+       }
+         </script>
+    
+     <body bgcolor="#dddd">
+           <button type="button" onclick="JS_Swift1()">JS调用Swift方法(无参)</button>
+           <button type="button" onclick="JS_Swift2()">JS调用Swift方法(传参)</button>
+           
+<!--      模型注入     -->
+           <div style="margin-top: 100px">
+               <h1>Test how to use objective-c call js</h1>
+               <input type="button" value="Call ObjC system camera" onclick="OCModel.callSystemCamera()">
+                   <input type="button" value="Call ObjC system alert" onclick="OCModel.showAlertMsg('js title', 'js message')">
+           </div>
+           
+           <div>
+               <input type="button" value="Call ObjC func with JSON " onclick="OCModel.callWithDict({'name': 'testname', 'age': 10, 'height': 170})">
+                   <input type="button" value="Call ObjC func with JSON and ObjC call js func to pass args." onclick="OCModel.jsCallObjcAndObjcCallJsWithDict({'name': 'testname', 'age': 10, 'height': 170})">
+           </div>
+           
+           <div>
+               <span id="jsParamFuncSpan" style="color: red; font-size: 50px;"></span>
+           </div>
+           
+           <script type="text/javascript">
+               function jsFunc() {
+                   alert('Objective-C call js to show alert');
+               }
+           // 注意哦，如果JS写错，可能在OC调用JS方法时，都会出错哦。
+           var jsParamFunc = function(argument) {
+               document.getElementById('jsParamFuncSpan').innerHTML
+               = argument['name'];
+           }
+           
+               </script>
+         </body>
+     </html>
